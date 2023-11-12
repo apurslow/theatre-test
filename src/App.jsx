@@ -4,16 +4,18 @@ import { getProject, val } from "@theatre/core";
 import { SheetProvider, PerspectiveCamera, useCurrentSheet } from "@theatre/r3f";
 import FantasyBook from "./modelComponents/FantasyBook";
 
+import flyThroughState from './fly.json'
+
 
 
 function App() {
 
-  const sheet = getProject('Fly Through').sheet('Scene')
+  const sheet = getProject('Fly Through',{state: flyThroughState}).sheet('Scene')
 
 
   return (
     <Canvas gl={{ preserveDrawingBuffer: true }}>
-      <ScrollControls pages={5}>
+      <ScrollControls pages={5} damping={0.5} maxSpeed={0.5}>
         <SheetProvider sheet={sheet}>
           <Scene />
         </SheetProvider>
